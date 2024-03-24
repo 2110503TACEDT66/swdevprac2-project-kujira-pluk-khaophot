@@ -30,10 +30,15 @@ export default async function TopMenu(){
                                 </div>
                         </Link>
                         : 
+                        <div className='absolute right-0 top-[5px]'>
+                            <Link href="/api/auth/register" className='px-5'>    
+                                Register
+                            </Link>
+                            <Link href="/api/auth/signin">    
+                             Sign-In<PersonIcon color="disabled"></PersonIcon>
+                            </Link>
+                        </div>
                         
-                        <Link href="/api/auth/signin" className='absolute right-0 top-[5px]'>    
-                            <PersonIcon color="disabled"></PersonIcon>
-                        </Link>
                 }
             </div>
         </div>
