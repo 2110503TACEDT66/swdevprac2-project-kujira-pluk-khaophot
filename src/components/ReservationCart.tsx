@@ -25,7 +25,7 @@ export default async function cart({rentJson}: {rentJson:Object}){
                         </div>
 
                         <button className="rounded-md bg-blue-600 hover:bg-indigo-600 px-3 py-2 text-white shadow-sm my-2  w-fit absolute right-[100px]"
-                        onClick={() => ()}>
+                        >
                              Edit
                         </button>
                         {/* <button className="rounded-md bg-red-600 hover:bg-indigo-600 px-3 py-2 text-white shadow-sm my-2 mx-3 w-fit absolute right-0"
