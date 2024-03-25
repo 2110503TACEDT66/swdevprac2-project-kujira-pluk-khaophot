@@ -1,7 +1,12 @@
+import deleteRent from '@/libs/deleteRent'
 import Image from 'next/image'
+import { getServerSession } from "next-auth"
+import { authOptions } from "@/app/api/auth/[...nextauth]/route"
+import CancelButton from './CancelButton'
 
 export default async function cart({rentJson}: {rentJson:Object}){
     const rentReady = await rentJson
+    const session = await getServerSession(authOptions)
 
     return(
         <>
@@ -19,14 +24,15 @@ export default async function cart({rentJson}: {rentJson:Object}){
                             <div className="block text-xl text-center">{rentItem.rentDate}</div>
                         </div>
 
-
-
                         <button className="rounded-md bg-blue-600 hover:bg-indigo-600 px-3 py-2 text-white shadow-sm my-2  w-fit absolute right-[100px]">
                              Edit
                         </button>
-                            <button className="rounded-md bg-red-600 hover:bg-indigo-600 px-3 py-2 text-white shadow-sm my-2 mx-3 w-fit absolute right-0">
+                        {/* <button className="rounded-md bg-red-600 hover:bg-indigo-600 px-3 py-2 text-white shadow-sm my-2 mx-3 w-fit absolute right-0"
+                            onClick={() => deleteRent(session.user.token,rentItem._id)}>
                              Cancel
-                        </button>
+                        </button> */}
+                        <CancelButton token={session?.user.token} id={rentItem._id} />
+                        
                     </div>
                 ))
             }
