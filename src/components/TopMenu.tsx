@@ -10,7 +10,7 @@ export default async function TopMenu(){
     const session = await getServerSession(authOptions)
 
     return (
-        <div className='h-[50px] bg-inherit fixed top-5 inset-x-0 z-30 flex flex-row mx-10'>
+        <div className='h-[50px] bg-inherit absolute top-5 inset-x-0 z-30 flex flex-row mx-10'>
             <a href="/">
                 <Image src={'/img/logo.png'} className='h-[70%] w-auto absolute left-0 align-bottom top-[5px]'   width={0} height={0} sizes='100vh' alt='logo'/>
             </a>

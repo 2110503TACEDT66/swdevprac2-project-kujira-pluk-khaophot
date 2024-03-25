@@ -5,13 +5,13 @@ export default async function cart({rentJson}: {rentJson:Object}){
 
     return(
         <>
-        <div className="mt-[100px] text-center text-xl"> This is your reservation {rentJson.count}</div>
+        <div className='mt-[100px]'></div>
         <div className="flex flex-col justify-center items-center">
             {
                 rentReady.data.map((rentItem:Object)=>(
                     <div className="bg-slate-200 rounded px-5 mx-5 py-2 px-2 my-2 w-[60%] flex relative h-[170px]" key={rentItem._id}>
-                        <div className='h-fit w-fit mx-[10px]'>
-                            <Image src={''} width={150} height={150} alt='car picture' className='block'/>
+                        <div className='h-[150px] w-[150px] relative'>
+                            <Image src={rentItem.car.picture} layout='fill' alt='car picture' priority objectFit='cover' className='rounded'/>
                         </div>
 
                         <div className='flex flex-col items-center justify-end absolute bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
