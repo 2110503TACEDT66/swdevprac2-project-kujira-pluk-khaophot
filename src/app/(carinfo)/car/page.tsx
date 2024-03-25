@@ -6,7 +6,7 @@ import getCars from "@/libs/getCars"
 export default async function car() {
     const cars = await getCars()
     return(
-        <main className="text-center mt-50 font-mono">
+        <main className="text-center mt-[70px] font-mono">
             <CarCatalog carJson={cars}/>
         </main>
     )

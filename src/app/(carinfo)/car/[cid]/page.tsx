@@ -15,13 +15,11 @@ export default async function CarDetailPage({params}:{params: {cid:string}}) {
  */
     console.log(CarDetail.data.picArray[0])
     return(
-        <main className="text-center font-mono">
-            <h1 className="text-2xl font-medium mt-20">{CarDetail.data.car}, {CarDetail.data.name}</h1>
-            <div className="flex flex-row my-5 px-4">
-            <Image src={CarDetail.data.picture}
-                alt='Product Picture'
-                width={0} height={0} sizes="100vm"
-                className="rounded-lg w-[80%] h-[100%] bg-black"/>
+        <main className="text-center font-mono pt-24">
+            <div className="flex flex-row my-5 pl-20">
+                <div className="w-[70%]">
+                <CarSlideShow picArray={CarDetail.data.picArray}/>
+                </div>
                 <div className="text-md mx-5 w-[30%]">
                     <div className="text-xl">{CarDetail.data.car}</div>
                     <div className="flex justify-center my-2">
@@ -38,8 +36,8 @@ export default async function CarDetailPage({params}:{params: {cid:string}}) {
                     <div>Tel: {CarDetail.data.tel}</div>              
                     <div>Address: {CarDetail.data.address}</div>
                     <div className="flex justify-center my-2">
-                    <Link href={`/reservations?id=${params.cid}&model=${CarDetail.data.model}`}>
-                    <button className="block rounded-md bg-sky-600 hover:bg-indigo-600 px-3 py-2 shadow-sm text-white">
+                    <Link href={`/reservations`}>
+                    <button className="block rounded-md bg-gray-950 hover:bg-gray-600 px-3 py-2 shadow-sm text-white">
                     Make Reservation</button>
                     </Link>
                     </div>
