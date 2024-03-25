@@ -14,14 +14,14 @@ export default async function cart({rentJson}: {rentJson:Object}){
         <div className="flex flex-col justify-center items-center">
             {
                 rentReady.data.map((rentItem:Object)=>(
-                    <div className="bg-slate-200 rounded px-5 mx-5 py-2 px-2 my-2 w-[60%] flex relative h-[170px]" key={rentItem._id}>
-                        <div className='h-[150px] w-[150px] relative'>
-                            <Image src={rentItem.car.picture} layout='fill' alt='car picture' priority objectFit='cover' className='rounded'/>
+                    <div className="bg-white rounded px-5 mx-5 py-2 px-2 my-2 w-[60%] flex relative h-[170px] hover:bg-slate-100" key={rentItem._id}>
+                        <div className='h-[150px] w-[250px] relative'>
+                            <Image src={rentItem.car.picArray[0]} layout='fill' alt='car picture' priority objectFit='cover' className='rounded'/>
                         </div>
 
                         <div className='flex flex-col items-center justify-end absolute bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
-                            <div className="block text-xl text-center">{rentItem.car.car}</div>
-                            <div className="block text-xl text-center">{rentItem.rentDate}</div>
+                            <div className="block text-xl text-center font-mono">{rentItem.car.car}</div>
+                            <div className="block text-xl text-center font-mono">{rentItem.rentDate}</div>
                         </div>
 
                         <button className="rounded-md bg-blue-600 hover:bg-indigo-600 px-3 py-2 text-white shadow-sm my-2  w-fit absolute right-[100px]">
