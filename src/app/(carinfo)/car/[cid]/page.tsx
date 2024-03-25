@@ -21,21 +21,25 @@ export default async function CarDetailPage({params}:{params: {cid:string}}) {
                 <CarSlideShow picArray={CarDetail.data.picArray}/>
                 </div>
                 <div className="text-md mx-5 w-[30%]">
-                    <div className="text-xl">{CarDetail.data.car}</div>
-                    <div className="flex justify-center my-2">
-                        <table className="text-medium border-collapse border">
-                            <tr><td className="border p-1">Top Speed</td><td className="border p-1">{CarDetail.data.topSpeed}</td></tr>
-                            <tr><td className="border p-1">Seats</td><td className="border p-1">{CarDetail.data.seats}</td></tr>
-                            <tr><td className="border p-1">Color</td><td className="border p-1">{CarDetail.data.color}</td></tr>
-                            <tr><td className="border p-1">Fuel Type</td><td className="border p-1">{CarDetail.data.fuelType}</td></tr>
-                            <tr><td className="border p-1">Cargo Capacity</td><td className="border p-1">{CarDetail.data.cargoCapacity}</td></tr>
+                    <div className="text-2xl">{CarDetail.data.car}</div>
+                    <div className="flex justify-center py-2">
+                        <table className="text-lg border-collapse">
+                            <tr>
+                            <td className="p-3">Top Speed<br/><div className="text-base text-zinc-500">{CarDetail.data.topSpeed} mph</div></td>
+                            <td className="p-3">Seats<br/><div className="text-base text-zinc-500">{CarDetail.data.seats}</div></td>
+                            </tr>
+                            <tr>
+                                <td className="p-3">Color<br/><div className="text-base text-zinc-500">{CarDetail.data.color}</div></td>
+                                <td className="p-3">Fuel Type<br/><div className="text-base text-zinc-500">{CarDetail.data.fuelType}</div></td>
+                            </tr>
+                            <tr><td colSpan={2} className="p-3">Cargo Capacity<br/><div className="text-base text-zinc-500">{CarDetail.data.cargoCapacity} cubic ft.</div></td></tr>
                         </table>
                     </div>
                     <div className="text-xl py-3">{CarDetail.data.dayRate}$ per day</div>
-                    <div>Name: {CarDetail.data.name}</div>
+                    <div className="mt-3">Name: {CarDetail.data.name}</div>
                     <div>Tel: {CarDetail.data.tel}</div>              
                     <div>Address: {CarDetail.data.address}</div>
-                    <div className="flex justify-center my-2">
+                    <div className="flex justify-center py-3 mt-2">
                     <Link href={`/reservations`}>
                     <button className="block rounded-md bg-gray-950 hover:bg-gray-600 px-3 py-2 shadow-sm text-white">
                     Make Reservation</button>
