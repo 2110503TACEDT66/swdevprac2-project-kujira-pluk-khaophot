@@ -1,0 +1,15 @@
+.carbanner {
+    display: block;
+    padding: 5px;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+.carbannerText {
+    position: relative;
+    top: 130px;
+    z-index: 40;
+    text-align: center;
+}
