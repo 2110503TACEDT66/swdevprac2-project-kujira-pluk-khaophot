@@ -5,6 +5,7 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import { Link } from '@mui/material'
 import { useRouter } from 'next/navigation';
 import PersonIcon from '@mui/icons-material/Person';
+import getUserProfile from '@/libs/getUserProfile'
 
 export default async function TopMenu(){
     const session = await getServerSession(authOptions)
@@ -34,9 +35,10 @@ export default async function TopMenu(){
                             <Link href="/api/auth/register" className='px-5'>    
                                 Register
                             </Link>
-                            <Link href="/api/auth/signin">    
-                             Sign-In<PersonIcon color="disabled"></PersonIcon>
+                            <Link href="/api/auth/signin" className='pr-5'>    
+                             Sign-In
                             </Link>
+                            <PersonIcon color="disabled"></PersonIcon>
                         </div>
                         
                 }
