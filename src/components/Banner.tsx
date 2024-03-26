@@ -4,6 +4,7 @@ import styles from './banner.module.css'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
+import { Suspense } from 'react';
 
 export default function Banner() {
     // const covers = ['/img/cover.jpg','/img/cover2.jpg','/img/cover3.jpg'];
@@ -13,12 +14,14 @@ export default function Banner() {
     console.log(session?.user.token)
 
     return (
-        <div className={styles.banner} onClick={()=>setIndex(index+1)}>
-            <Image src={'/img/background.jpg'} alt='cover' fill={true} priority objectFit='cover'/>
-            <div className={styles.bannerText}>
+        <div className='h-screen'>
+            <Suspense fallback={<p>Loading...</p>}>
+            <video src="/vdo/videomainpage.mp4" muted loop className='w-full h-full object-cover' autoPlay></video>
+            </Suspense>
+            {/* <div className={styles.bannerText}>
                 <h1 className='text-4xl font-medium'>Your Travel Partner</h1>
                 <h3 className='text-xl font-serif'>Explore Your World with Us</h3>
-            </div>
+            </div> */}
             {/* {
                 session? <div className='z-30 absolute top-5 right-10 font-semibold text-cyan-800 text-xl'>Hello {session.user?.name}</div>
                 :null
