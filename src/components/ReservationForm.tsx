@@ -12,9 +12,6 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider"
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import addRent from '@/libs/addRent';
 import { useSession } from 'next-auth/react';
-
-
-
 export default function ReservationForm(){
 
     const [cars, setCars] = useState([]);
@@ -28,7 +25,7 @@ export default function ReservationForm(){
         if (!session || !session.user.token) return null
         const item:ReservationItem ={
             car:selectedCar,
-            returnDate:dayjs(reserveDate).format("YYYY/MM/DD"),
+            rentDate:dayjs(reserveDate).format("YYYY/MM/DD"),
         }
         const response = await addRent(session?.user?.token,item)
         if(response){
@@ -61,7 +58,6 @@ export default function ReservationForm(){
         CarMap.set(tmpCar.id,tmpCar.car)
         CarPicMap.set(tmpCar.id,tmpCar.picArray[0])
     })
-    const selectedCarData = cars.find((car) => car.car === selectedCar);
 
     return (       
         <main className="flex justify-between font-mono">
@@ -118,7 +114,6 @@ export default function ReservationForm(){
                     onClick={addReserve}
                     className="items-center rounded-md bg-black bg-black 
                     hover:bg-zinc-600 px-3 py-2 shadow-sm text-white mt-2 font-mono" 
-                    // onClick={makeReservation}
                     >
                     Reserve this Car
                 </button>
