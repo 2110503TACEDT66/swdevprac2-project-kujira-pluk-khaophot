@@ -2,8 +2,6 @@ import Image from 'next/image'
 import TopMenuItem from './TopMenuItem'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
-import { Link } from '@mui/material'
-import { useRouter } from 'next/navigation';
 import PersonIcon from '@mui/icons-material/Person';
 import getUserProfile from '@/libs/getUserProfile'
 
@@ -30,7 +28,7 @@ export default async function TopMenu(){
                         <div className='absolute right-0 flex w-fit top-[15px] justify-center items-center'>
                             {
                                 (profile.data.role == "admin")?
-                                <a href="/admin" className='text-grey-500 text-md font-mono'>Admin</a>
+                                <a href="/admin/addCar" className='text-grey-500 text-md font-mono'>Admin</a>
                                 : ''
                             }
                             <a href="/api/auth/signout">
@@ -50,8 +48,7 @@ export default async function TopMenu(){
                              Sign-In
                             </a>
                             <PersonIcon color="disabled"></PersonIcon>
-                        </div>
-                        
+                        </div>    
                 }
             </div>
         </div>

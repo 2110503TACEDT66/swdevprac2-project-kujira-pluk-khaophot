@@ -1,10 +1,9 @@
-
-import ReservationMenu from '@/components/ReservationMenu';
+import EditMenu from "@/components/EditMenu";
 
 export default function ReservationLayout({children} : {children: React.ReactNode}){
     return (
         <div className='flex bg-grey-400'>
-            <ReservationMenu/>
+            <EditMenu/>
             {children}
         </div>
     );

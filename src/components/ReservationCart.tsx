@@ -7,7 +7,6 @@ import CancelButton from './CancelButton'
 export default async function cart({rentJson}: {rentJson:Object}){
     const rentReady = await rentJson
     const session = await getServerSession(authOptions)
-
     return(
         <>
         <div className='mt-[100px]'></div>
@@ -18,12 +17,10 @@ export default async function cart({rentJson}: {rentJson:Object}){
                         <div className='h-[150px] w-[250px] relative'>
                             <Image src={rentItem.car.picArray[0]} layout='fill' alt='car picture' priority objectFit='cover' className='rounded'/>
                         </div>
-
                         <div className='flex flex-col items-center justify-end absolute bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
                             <div className="block text-xl text-center font-mono">{rentItem.car.car}</div>
                             <div className="block text-xl text-center font-mono">{rentItem.rentDate}</div>
                         </div>
-
                         <a href={`/cart/edit?id=${rentItem._id}`}>
                             <div className="rounded-md bg-blue-600 hover:bg-indigo-600 px-3 py-2 text-white shadow-sm my-2  w-fit absolute right-[100px]">
                                 Edit
@@ -34,7 +31,6 @@ export default async function cart({rentJson}: {rentJson:Object}){
                              Cancel
                         </button> */}
                         <CancelButton token={session?.user.token} id={rentItem._id} />
-                        
                     </div>
                 ))
             }

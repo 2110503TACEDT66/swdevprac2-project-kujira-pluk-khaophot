@@ -5,11 +5,18 @@ import Car from "@/db/models/Car"
 import { dbConnect } from "@/db/dbConnect"
 import { revalidateTag } from "next/cache"
 import { redirect } from "next/navigation"
+import updateCar from "@/libs/updateCar"
 
 export default async function EditCar(){
 
-    const addCar= async (addCarForm:FormData) => {
+
+
+    const session = await getServerSession(authOptions)
+    if(!session || !session.user.token) return null
+
+    const update= async (addCarForm:FormData) => {
         "use server"
+        const cid= addCarForm.get('id')
         const name = addCarForm.get("name")
         const address = addCarForm.get("address")
         const tel = addCarForm.get("tel")
@@ -28,10 +35,9 @@ export default async function EditCar(){
         picArray.push(picture1)
         picArray.push(picture2)
         picArray.push(picture3)
-
+        
         try {
-            await dbConnect()
-            const car = await Car.create({
+            const car ={
                 "name": name,
                 "address": address,
                 "tel": tel,
@@ -44,16 +50,16 @@ export default async function EditCar(){
                 "fuelType": fuelType,
                 "cargoCapacity": cargoCapacity,
                 "picArray": picArray
-            })
+            }
+            console.log(car)
+           await updateCar(session?.user.token,car,cid)
         } catch (error) {
             console.log(error)
         }
         revalidateTag("cars")
         redirect('/car')
     }
-
-    const session = await getServerSession(authOptions)
-    if(!session || !session.user.token) return null
+    
 
     const profile = await getUserProfile(session.user.token)
     var createdAt = new Date(profile.data.createdAt);
@@ -70,8 +76,14 @@ export default async function EditCar(){
             </table>
             {
                 (profile.data.role == "admin")?
-                <form action={addCar}>
+                <form action={update}>
                     <div className="text-xl text-blue-700 pt-[25px]">Create Car Model</div>
+                    <div className="flex items-center w-auto my-2">
+                        <label className="w-auto block text-gray-700 pr-4" htmlFor="id">CarId</label>
+                        <input type="text" required id = "id" name="id" placeholder="CarId"
+                        className="bg-white border-2 border-gray-200 rounded w-full p-2
+                        text-gray-700 focus:outline-none focus:border-blue-400"/>
+                    </div>
                     <div className="flex items-center w-auto my-2">
                         <label className="w-auto block text-gray-700 pr-4" htmlFor="name">Name</label>
                         <input type="text" required id = "name" name="name" placeholder="Owner name"

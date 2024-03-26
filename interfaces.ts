@@ -3,11 +3,18 @@ export interface ReservationItem{
     returnDate: string
 }
 export interface CarItem {
-    _id: string
-    name: string
-    address: string
-    car: string
-    picture: string
+    name: string,
+    address: string,
+    tel:string,
+    car: string,
+    dayRate: string,
+    picture: string,
+    topSpeed: string,
+    seats: string,
+    color: string,
+    fuelType: string,
+    cargoCapacity: string,
+    picArray: string
 }
 
 export interface CarJson {

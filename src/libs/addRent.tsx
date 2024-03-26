@@ -1,4 +1,4 @@
-import { error } from "console"
+
 import { ReservationItem } from "../../interfaces"
 
 export default async function addRent(token:string,item:ReservationItem) {

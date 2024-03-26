@@ -82,11 +82,9 @@ export default function ReservationForm(){
                     sizes='100' 
                     className='relative'
                 />
-            </div>
-        ) : null}
+            </div>) : null}
         </div>
         )}
-
         <div className="w-auto absolute right-0 pt-[250px] pr-[100px]">
             <div className="text-2xl text-gray-600 font-bold mb-4">
                 Choose your Car
@@ -100,8 +98,8 @@ export default function ReservationForm(){
                         </MenuItem>
                     ))}
                 </Select>
-                <div className="w-fit space-y-4 text-left">
-                    <div>
+            <div className="w-fit space-y-4 text-left">
+                <div>
                     {/* <CarReserve onCarChange={(value:string)=> setCar(value)} /> */}
                     </div>
                 </div>
