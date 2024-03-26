@@ -7,7 +7,7 @@ import { revalidateTag } from "next/cache"
 import { redirect } from "next/navigation"
 
 
-export default async function admin(){
+export default async function addCar(){  
 
     const addCar= async (addCarForm:FormData) => {
         "use server"
@@ -60,10 +60,11 @@ export default async function admin(){
     var createdAt = new Date(profile.data.createdAt);
 
     return(
-        <main>
+        <main className="w-5/6 h-screen">   
             <div className="bg-slate-100 m-5 p-5 rounded w-[60%] ml-auto mr-auto mt-[150px] w-fit">
                 <table className="table-auto border-seperate border-spacing-4 w-1/5">
                     <tbody>
+
                         <tr><td>Email: </td><td className="text-red-700">{profile.data.email}</td></tr>
                         <tr><td>Tel.</td><td className="text-red-700">{profile.data.tel}</td></tr>
                     </tbody>
@@ -71,7 +72,7 @@ export default async function admin(){
                 {
                     (profile.data.role == "admin")?
                     <form action={addCar}>
-                        <div className="text-xl text-blue-700 pt-[50px]">Create Car Model</div>
+                        <div className="text-xl text-blue-700 pt-[25px]">Create Car Model</div>
                         <div className="flex items-center w-auto my-2">
                             <label className="w-auto block text-gray-700 pr-4" htmlFor="name">Name</label>
                             <input type="text" required id = "name" name="name" placeholder="Owner name"
