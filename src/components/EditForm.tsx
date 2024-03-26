@@ -20,7 +20,7 @@ export default function EditForm(){
     const rid = urlParams.get('id')
 
     const [cars, setCars] = useState([]);
-    const [selectedCar, setSelectedCar] = useState<string|null>(null);    
+    const [selectedCar, setSelectedCar] = useState<CarJson|null>(null);    
     const [reserveDate, setReserveDate] = useState<Dayjs|null>(null)
 
     const {data : session} = useSession()
