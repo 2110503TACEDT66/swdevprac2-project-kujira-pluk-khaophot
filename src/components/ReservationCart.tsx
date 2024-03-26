@@ -16,7 +16,7 @@ export default async function cart({rentJson}: {rentJson:ReservationItem}){
                 rentReady.data.map((rentItem:ReservationItem)=>(
                     <div className="bg-white rounded px-5 mx-5 py-2 px-2 my-2 w-[60%] flex relative h-[170px] hover:bg-slate-100" key={rentItem._id}>
                         <div className='h-[150px] w-[250px] relative'>
-                            <Image src={rentItem.car.picArray[0]} layout='fill' alt='car picture' priority objectFit='cover' className='rounded'/>
+                            <Image src={rentItem.car.picArray[0]} width={0} height={0} sizes='100vm' alt='car picture' priority className='rounded w-full h-full' style={{objectFit:"cover"}}/>
                         </div>
                         <div className='flex flex-col items-center justify-end absolute bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
                             <div className="block text-xl text-center font-mono">{rentItem.car.car}</div>
