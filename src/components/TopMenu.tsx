@@ -41,7 +41,7 @@ export default async function TopMenu(){
 
                         : 
                         <div className='absolute right-0 top-[5px] font-mono'>
-                            <a href="/api/auth/register" className='px-5'>    
+                            <a href="/register" className='px-5'>    
                                 Register
                             </a>
                             <a href="/api/auth/signin" className='pr-5'>    
