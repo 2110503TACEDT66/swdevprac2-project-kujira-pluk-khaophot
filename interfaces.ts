@@ -5,6 +5,7 @@ export interface ReservationItem{
     
 }
 export interface CarItem {
+    _id: string,
     name: string,
     address: string,
     tel:string,
