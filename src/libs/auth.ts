@@ -1,9 +1,9 @@
 import NextAuth from "next-auth/next";
-import { AuthOptions } from "next-auth";
+import { AuthOptions, NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import userLogIn from "@/libs/userLogIn";
 
-export const authOptions:AuthOptions = {
+export const authOptions:NextAuthOptions = {
     providers: [
         //Authenticatoin provider, use Credenttial provider
         CredentialsProvider({
