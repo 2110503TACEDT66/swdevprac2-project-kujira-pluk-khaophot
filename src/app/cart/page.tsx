@@ -2,7 +2,7 @@ import { AppDispatch, useAppSelector } from "@/redux/store"
 import { useDispatch } from "react-redux"
 import { removeReservation } from "@/redux/features/cartSlice"
 import getRents from '@/libs/getRents'
-import { authOptions } from "@/app/api/auth/[...nextauth]/route"
+import { authOptions } from "@/libs/auth";
 import { getServerSession } from "next-auth"
 import getUserProfile from "@/libs/getUserProfile"
 import ReservationCart from "@/components/ReservationCart"

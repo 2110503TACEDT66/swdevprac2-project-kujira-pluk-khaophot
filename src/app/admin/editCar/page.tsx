@@ -1,9 +1,10 @@
-import { authOptions } from "@/app/api/auth/[...nextauth]/route"
+import { authOptions } from "@/libs/auth";
 import { getServerSession } from "next-auth"
 import getUserProfile from "@/libs/getUserProfile"
 import { revalidateTag } from "next/cache"
 import { redirect } from "next/navigation"
 import updateCar from "@/libs/updateCar"
+import { CarItem } from "../../../../interfaces";
 
 export default async function EditCar(){
 
@@ -48,7 +49,7 @@ export default async function EditCar(){
                 "picArray": picArray
             }
             console.log(car)
-           await updateCar(session?.user.token,car,cid)
+            await updateCar(session?.user.token,car,cid)
         } catch (error) {
             console.log(error)
         }

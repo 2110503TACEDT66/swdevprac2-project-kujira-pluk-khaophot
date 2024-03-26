@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import TopMenuItem from './TopMenuItem'
 import { getServerSession } from 'next-auth'
-import { authOptions } from '@/app/api/auth/[...nextauth]/route'
+import { authOptions } from "@/libs/auth";
 import PersonIcon from '@mui/icons-material/Person';
 import getUserProfile from '@/libs/getUserProfile'
 
@@ -41,7 +41,7 @@ export default async function TopMenu(){
 
                         : 
                         <div className='absolute right-0 top-[5px] font-mono'>
-                            <a href="/api/auth/register" className='px-5'>    
+                            <a href="/register" className='px-5'>    
                                 Register
                             </a>
                             <a href="/api/auth/signin" className='pr-5'>    
