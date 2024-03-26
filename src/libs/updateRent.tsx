@@ -11,7 +11,7 @@ export default async function updateRent(token:string,item:ReservationItem,rentI
         },
         body: JSON.stringify({
             car: item.car,
-            rentDate: item.returnDate,
+            rentDate: item.rentDate,
         }),
     })
 

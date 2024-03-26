@@ -10,7 +10,7 @@ export default async function addRent(token:string,item:ReservationItem) {
             
         },
         body: JSON.stringify({
-            rentDate: item.returnDate,
+            rentDate: item.rentDate,
         }),
     })
 
