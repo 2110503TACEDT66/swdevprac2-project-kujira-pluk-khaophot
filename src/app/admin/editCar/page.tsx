@@ -34,7 +34,7 @@ export default async function EditCar(){
         picArray.push(picture3)
         
         try {
-            const car:CarItem ={
+            const car ={
                 "name": name,
                 "address": address,
                 "tel": tel,
@@ -49,7 +49,7 @@ export default async function EditCar(){
                 "picArray": picArray
             }
             console.log(car)
-           await updateCar(session?.user.token,car,cid)
+            await updateCar(session?.user.token,car,cid)
         } catch (error) {
             console.log(error)
         }
