@@ -9,7 +9,9 @@ import getUserProfile from '@/libs/getUserProfile'
 
 export default async function TopMenu(){
     const session = await getServerSession(authOptions)
-
+    if(session){
+        var profile = await getUserProfile(session.user.token)
+    }
     return (
         <div className='h-[50px] bg-inherit absolute top-5 inset-x-0 z-30 flex flex-row mx-10'>
             <a href="/">
@@ -24,20 +26,29 @@ export default async function TopMenu(){
             
             <div>
                 {
-                    session? <Link href="/api/auth/signout">
-                                <div className='flex items-center absolute right-0 h-full px-2 text-grey-500 text-md justitfy-center'>
+                    session? 
+                        <div className='absolute right-0 flex w-fit top-[15px] justify-center items-center'>
+                            {
+                                (profile.data.role == "admin")?
+                                <a href="/admin" className='text-grey-500 text-md font-mono'>Admin</a>
+                                : ''
+                            }
+                            <a href="/api/auth/signout">
+                                <div className='flex h-full px-2 text-grey-500 text-md font-mono'>
                                     <div className='px-4'>Sign-Out</div>
                                      <PersonIcon color="disabled"></PersonIcon>
                                 </div>
-                        </Link>
+                            </a>
+                        </div>
+
                         : 
-                        <div className='absolute right-0 top-[5px]'>
-                            <Link href="/api/auth/register" className='px-5'>    
+                        <div className='absolute right-0 top-[5px] font-mono'>
+                            <a href="/api/auth/register" className='px-5'>    
                                 Register
-                            </Link>
-                            <Link href="/api/auth/signin" className='pr-5'>    
+                            </a>
+                            <a href="/api/auth/signin" className='pr-5'>    
                              Sign-In
-                            </Link>
+                            </a>
                             <PersonIcon color="disabled"></PersonIcon>
                         </div>
                         

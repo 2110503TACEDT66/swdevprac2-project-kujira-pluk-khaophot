@@ -18,6 +18,11 @@ export default function Banner() {
             <Suspense fallback={<p>Loading...</p>}>
             <video src="/vdo/videomainpage.mp4" muted loop className='w-full h-full object-cover' autoPlay></video>
             </Suspense>
+            <div className="absolute left-10 bottom-10 text-white font-sans">
+                <h1 className='text-6xl font-bold'>DON'T RENT A CAR</h1>
+                <h1 className='text-6xl font-bold'>RENT THE CAR</h1>
+                <h3 className='text-xl'>Premium car rental at affordable rates.</h3>   
+            </div>
             {/* <div className={styles.bannerText}>
                 <h1 className='text-4xl font-medium'>Your Travel Partner</h1>
                 <h3 className='text-xl font-serif'>Explore Your World with Us</h3>
