@@ -170,7 +170,7 @@ export default async function EditCar(){
                             text-gray-700 focus:outline-none focus:border-blue-400"/>
                         </div>
                     </div>
-                    <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white p-2 rounded">Add New Car</button>
+                    <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white p-2 rounded">Edit Car</button>
                 </form>
                 : null
             }

@@ -24,6 +24,7 @@ export default async function CarDetailPage({params}:{params: {cid:string}}) {
                     <div className="text-2xl">{CarDetail.data.car}</div>
                     <div className="flex justify-center py-2">
                         <table className="text-xl border-collapse">
+                            <tbody>
                             <tr>
                             <td className="p-3">{CarDetail.data.topSpeed} mph<br/><div className="text-sm text-zinc-500">Top Speed</div></td>
                             <td className="p-3">{CarDetail.data.seats}<br/><div className="text-sm text-zinc-500">Seats</div></td>
@@ -33,6 +34,7 @@ export default async function CarDetailPage({params}:{params: {cid:string}}) {
                                 <td className="p-3">{CarDetail.data.fuelType}<br/><div className="text-sm text-zinc-500">Fuel Type</div></td>
                             </tr>
                             <tr><td colSpan={2} className="p-3">{CarDetail.data.cargoCapacity} cubic ft.<br/><div className="text-sm text-zinc-500">Cargo Capacity</div></td></tr>
+                            </tbody>
                         </table>
                     </div>
                     <div className="text-xl py-3">{CarDetail.data.dayRate}$ per day</div>
