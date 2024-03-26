@@ -4,18 +4,48 @@ import ReservationComponent from '@/components/ReservationComponent';
 import getCars from '@/libs/getCars';
 import { Select, MenuItem } from '@mui/material';
 import Image from 'next/image';
-import { CarJson } from '../../interfaces';
+import { CarJson, ReservationItem } from '../../interfaces';
+import getUserProfile from "@/libs/getUserProfile"
+import { getServerSession } from "next-auth"
+import { authOptions } from "@/app/api/auth/[...nextauth]/route"
 import { dbConnect } from '@/db/dbConnect';
 // import Rent from '@/db/models/Rent';
 import { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
+import { DatePicker } from "@mui/x-date-pickers"
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider"
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import addRent from '@/libs/addRent';
+import { useSession } from 'next-auth/react';
 
 
 
 export default function ReservationForm(){
 
     const [cars, setCars] = useState([]);
-    const [selectedCar, setSelectedCar] = useState<CarJson|null>(null);
-    const [pickupDate,setPickupDate] = useState<Dayjs|null>(null)
+    const [selectedCar, setSelectedCar] = useState<CarJson|null>(null);    
+    const [reserveDate, setReserveDate] = useState<Dayjs|null>(null)
+
+    const {data : session} = useSession()
+
+    
+
+    //for backend
+    const addReserve = async () => {
+        if (!session || !session.user.token) return null
+        const item:ReservationItem ={
+            car:selectedCar,
+            returnDate:dayjs(reserveDate).format("YYYY/MM/DD"),
+    }
+    const response = await addRent(session?.user?.token,item)
+    if(response){
+        console.log(response)
+    }
+    
+    }
+    
+        
+    
 
 
     useEffect(() => {
@@ -32,26 +62,30 @@ export default function ReservationForm(){
     }, []);
 
     const handleCarChange = (event:any) => {
+        
         setSelectedCar(event.target.value);
+        console.log(event.target.value)
     };
 
     const CarMap=new Map()
+    const CarPicMap = new Map()
     cars.forEach(tmpCar => {
-        CarMap.set(tmpCar.id,tmpCar.picArray[0])
+        CarMap.set(tmpCar.id,tmpCar.car)
+        CarPicMap.set(tmpCar.id,tmpCar.picArray[0])
     })
     const selectedCarData = cars.find((car) => car.car === selectedCar);
 
    
 
     return (
-        <form action="">
+       
             <main className="flex justify-between">
         {(
         <div className="flex w-2/3 h-screen relative justify-center items-center">
         {selectedCar ? (
             <div className="flex justify-center items-center">
                 <Image 
-                    src={CarMap.get(selectedCar)} 
+                    src={CarPicMap.get(selectedCar)} 
                     alt='car' 
                     width={800} 
                     height={800} 
@@ -76,10 +110,43 @@ export default function ReservationForm(){
                 </MenuItem>
             ))}
         </Select>
-        <ReservationComponent/>
+        <div className="w-fit space-y-4 text-left">
+            <div>
+            {/* <CarReserve onCarChange={(value:string)=> setCar(value)} /> */}
+        </div>
+    </div>
+    <div className="flex flex-col justify-start items-start ">
+    <div className="text-lg text-gray-600 font-bold" style={{ fontFamily: 'Arial, sans-serif' }}>
+    Pick-Up Date
+</div>
+        <div className="mt-2">
+        <div className="bg-slate-100 rounded-lg w-fit px-10 py-5
+        flex flex-row">
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker className="bg-white"
+                value={reserveDate}
+                onChange={(value)=> {setReserveDate(value);}}
+                />
+            </LocalizationProvider>
+            
+            
+        </div>
+        </div>
+        <div className="w-full mt-[20px] flex justify-center items-center"> 
+            <button 
+            onClick={addReserve}
+            className="items-center rounded-md bg-blue-400 hover:bg-blue-600 px-3 py-2 shadow-sm text-white mt-2" 
+            // onClick={makeReservation}
+            >
+            Reserve this Car
+        </button>
+        </div>
+       
+    </div>  
     </div>
 </div>
+
 </main>
-        </form>
+    
     )
 }

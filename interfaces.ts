@@ -1,11 +1,6 @@
 export interface ReservationItem{
-    carId: string
-    carModel: string
-    numOfDays: number
-    pickupDate: string
-    pickupLocation: string
+    car: string
     returnDate: string
-    returnLocation: string
 }
 export interface CarItem {
     _id: string

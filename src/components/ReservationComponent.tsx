@@ -13,17 +13,6 @@ import { ReservationItem } from "../../interfaces"
 
 export default function ReservationComponent(){
     const [pickupDate,setPickupDate] = useState<Dayjs|null>(null)
-
-    // const makeReservation = () => {
-    //     if(carId && model && pickupDate){
-    //         const item:ReservationItem = {
-    //             carId : carId,
-    //             carModel : model,
-    //             pickupDate : dayjs(pickupDate).format("YYYY/MM/DD"),
-    //         }
-    //         // dispatch(addReservation(item))
-    //         }
-    //     }
         return (
         <main>
             <div className="w-fit space-y-4 text-left">
