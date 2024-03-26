@@ -1,14 +1,9 @@
 'use client'
 import { useState, useEffect } from 'react';
-import ReservationComponent from '@/components/ReservationComponent';
 import getCars from '@/libs/getCars';
 import { Select, MenuItem } from '@mui/material';
 import Image from 'next/image';
 import { CarJson, ReservationItem } from '../../interfaces';
-import getUserProfile from "@/libs/getUserProfile"
-import { getServerSession } from "next-auth"
-import { authOptions } from "@/app/api/auth/[...nextauth]/route"
-import { dbConnect } from '@/db/dbConnect';
 // import Rent from '@/db/models/Rent';
 import { Dayjs } from 'dayjs';
 import dayjs from 'dayjs';
