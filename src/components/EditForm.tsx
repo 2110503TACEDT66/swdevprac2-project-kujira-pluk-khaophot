@@ -1,25 +1,18 @@
 'use client'
 import { useState, useEffect } from 'react';
-import ReservationComponent from '@/components/ReservationComponent';
 import getCars from '@/libs/getCars';
 import { Select, MenuItem } from '@mui/material';
 import Image from 'next/image';
 import { CarJson, ReservationItem } from '../../interfaces';
-import getUserProfile from "@/libs/getUserProfile"
-import { getServerSession } from "next-auth"
-import { authOptions } from "@/app/api/auth/[...nextauth]/route"
-import { dbConnect } from '@/db/dbConnect';
 // import Rent from '@/db/models/Rent';
 import { Dayjs } from 'dayjs';
 import dayjs from 'dayjs';
 import { DatePicker } from "@mui/x-date-pickers"
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider"
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import addRent from '@/libs/addRent';
 import { useSession } from 'next-auth/react';
 import updateRent from '@/libs/updateRent';
 import { redirect, useSearchParams } from 'next/navigation';
-import { useRouter } from 'next/router';
 
 export default function EditForm(){
 

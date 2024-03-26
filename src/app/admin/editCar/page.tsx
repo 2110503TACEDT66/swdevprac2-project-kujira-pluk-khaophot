@@ -1,15 +1,11 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route"
 import { getServerSession } from "next-auth"
 import getUserProfile from "@/libs/getUserProfile"
-import Car from "@/db/models/Car"
-import { dbConnect } from "@/db/dbConnect"
 import { revalidateTag } from "next/cache"
 import { redirect } from "next/navigation"
 import updateCar from "@/libs/updateCar"
 
 export default async function EditCar(){
-
-
 
     const session = await getServerSession(authOptions)
     if(!session || !session.user.token) return null
