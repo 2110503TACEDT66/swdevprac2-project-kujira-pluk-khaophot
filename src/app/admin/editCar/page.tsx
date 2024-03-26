@@ -4,6 +4,7 @@ import getUserProfile from "@/libs/getUserProfile"
 import { revalidateTag } from "next/cache"
 import { redirect } from "next/navigation"
 import updateCar from "@/libs/updateCar"
+import { CarItem } from "../../../../interfaces";
 
 export default async function EditCar(){
 
@@ -33,7 +34,7 @@ export default async function EditCar(){
         picArray.push(picture3)
         
         try {
-            const car ={
+            const car:CarItem ={
                 "name": name,
                 "address": address,
                 "tel": tel,
