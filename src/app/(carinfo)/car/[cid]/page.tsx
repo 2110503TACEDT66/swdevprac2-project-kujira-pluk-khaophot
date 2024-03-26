@@ -15,12 +15,12 @@ export default async function CarDetailPage({params}:{params: {cid:string}}) {
  */
     console.log(CarDetail.data.picArray[0])
     return(
-        <main className="text-center font-mono pt-24">
-            <div className="flex flex-row my-5 pl-20">
-                <div className="w-[70%]">
+        <main className="text-center font-mono">
+            <div className="flex flex-row pl-20">
+                <div className="w-[70%] flex h-screen py-[100px] items-end">
                 <CarSlideShow picArray={CarDetail.data.picArray}/>
                 </div>
-                <div className="text-md mx-5 w-[30%]">
+                <div className="text-md mx-5 w-[30%] flex flex-col justify-center">
                     <div className="text-2xl">{CarDetail.data.car}</div>
                     <div className="flex justify-center py-2">
                         <table className="text-xl border-collapse">

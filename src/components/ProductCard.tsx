@@ -5,7 +5,7 @@ export default function ProductCard ({carName, ownername, ownerAddress, carId, i
     
     return (
         <div className={styles.carbanner}>
-            <Image src={imgSrc} alt='cover' fill={true} objectFit='cover'/>
+            <Image src={imgSrc} alt='cover' fill={true} style={{objectFit:"cover"}}/>
             <div className={styles.carbannerText}>
                 <h1 className='text-4xl font-mono text-white font-semibold'>{carName}</h1>
                 <h3 className='text-xl font-mono text-white font-semibold'>{ownername}, {ownerAddress}</h3>

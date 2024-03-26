@@ -9,7 +9,8 @@ export default function CarSlideShow({ picArray }: { picArray: Array<string> }) 
             <Image src={picArray[index%3]}
             alt='Product Picture'
             width={0} height={0} sizes="100vm"
-            className="rounded-lg w-full h-[650px]"/>
+            style={{objectFit:"fill"}}
+            className="rounded-lg w-[100%] h-[100%]"/>
             
             <button className='text-sm z-30 bg-slate-50 rounded-full
             px-1 py-1 z-30 text-black absolute top-1/2 left-1'
