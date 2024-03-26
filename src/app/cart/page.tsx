@@ -13,10 +13,10 @@ export default async function cart(){
     if(!session || !session.user.token) return null
 
     const profile = await getUserProfile(session.user.token)
-    console.log(profile.data._id)
+    // console.log(profile.data._id)
 
     const rents = await getRents(session.user.token)
-    console.log(rents)
+    // console.log(rents)
 
     return(
         <main>

@@ -17,10 +17,14 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider"
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import addRent from '@/libs/addRent';
 import { useSession } from 'next-auth/react';
+import updateRent from '@/libs/updateRent';
+import { redirect, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/router';
 
+export default function EditForm(){
 
-
-export default function ReservationForm(){
+    const urlParams = useSearchParams()
+    const rid = urlParams.get('id')
 
     const [cars, setCars] = useState([]);
     const [selectedCar, setSelectedCar] = useState<CarJson|null>(null);    
@@ -29,16 +33,16 @@ export default function ReservationForm(){
     const {data : session} = useSession()
 
     //for backend
-    const addReserve = async () => {
+    const updateReserve = async () => {
         if (!session || !session.user.token) return null
         const item:ReservationItem ={
             car:selectedCar,
             returnDate:dayjs(reserveDate).format("YYYY/MM/DD"),
         }
-        const response = await addRent(session?.user?.token,item)
+        const response = await updateRent(session?.user?.token,item,rid)
         if(response){
             console.log(response)
-            window.location.href = '/cart';
+            window.location.href = '/cart'
         }
     }
 
@@ -122,12 +126,12 @@ export default function ReservationForm(){
                 </div>
                 <div className="w-full mt-[20px] flex justify-center items-center"> 
                     <button 
-                    onClick={addReserve}
-                    className="items-center rounded-md bg-blue-400 hover:bg-blue-600 px-3 py-2 shadow-sm text-white mt-2" 
-                    // onClick={makeReservation}
-                    >
-                    Reserve this Car
-                </button>
+                        onClick={() => {updateReserve(); redirect('/cart')}}
+                        className="items-center rounded-md bg-blue-400 hover:bg-blue-600 px-3 py-2 shadow-sm text-white mt-2" 
+                        // onClick={makeReservation}
+                        >
+                        Edit this Reservation
+                    </button>
             </div>
        </div>  
     </div>
