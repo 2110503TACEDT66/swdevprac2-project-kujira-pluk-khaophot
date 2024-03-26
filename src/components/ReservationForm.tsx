@@ -88,7 +88,7 @@ export default function ReservationForm(){
         )}
 
         <div className="w-auto absolute right-0 pt-[250px] pr-[100px]">
-            <div className="text-2xl text-gray-600 font-bold mb-4">
+            <div className="text-2xl font-bold mb-4 font-mono">
                 Choose your Car
             </div>
             <div>
@@ -106,12 +106,12 @@ export default function ReservationForm(){
                     </div>
                 </div>
                 <div className="flex flex-col justify-start items-start ">
-                    <div className="text-lg text-gray-600 font-bold" style={{ fontFamily: 'Arial, sans-serif' }}>
+                    <div className="text-lg font-bold font-mono">
                         Pick-Up Date
                     </div>
                     <div className="mt-2">
-                        <div className="bg-slate-100 rounded-lg w-fit px-10 py-5
-                        flex flex-row">
+                        <div className="bg-neutral-100 rounded-lg w-fit px-10 py-5
+                        flex flex-row font-mono">
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <DatePicker className="bg-white"
                                 value={reserveDate}
@@ -123,7 +123,8 @@ export default function ReservationForm(){
                 <div className="w-full mt-[20px] flex justify-center items-center"> 
                     <button 
                     onClick={addReserve}
-                    className="items-center rounded-md bg-blue-400 hover:bg-blue-600 px-3 py-2 shadow-sm text-white mt-2" 
+                    className="items-center rounded-md bg-black bg-black 
+                    hover:bg-zinc-600 px-3 py-2 shadow-sm text-white mt-2 font-mono" 
                     // onClick={makeReservation}
                     >
                     Reserve this Car
