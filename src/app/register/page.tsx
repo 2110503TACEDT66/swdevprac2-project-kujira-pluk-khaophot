@@ -78,6 +78,8 @@ export default function register(){
                     id="email"
                     name="email"
                     className="w-full p-2 border rounded bg-slate-100"
+                    pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2})?"
+
                     required
                     />
                 </div>
