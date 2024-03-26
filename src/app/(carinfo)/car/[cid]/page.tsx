@@ -23,16 +23,16 @@ export default async function CarDetailPage({params}:{params: {cid:string}}) {
                 <div className="text-md mx-5 w-[30%]">
                     <div className="text-2xl">{CarDetail.data.car}</div>
                     <div className="flex justify-center py-2">
-                        <table className="text-lg border-collapse">
+                        <table className="text-xl border-collapse">
                             <tr>
-                            <td className="p-3">Top Speed<br/><div className="text-base text-zinc-500">{CarDetail.data.topSpeed} mph</div></td>
-                            <td className="p-3">Seats<br/><div className="text-base text-zinc-500">{CarDetail.data.seats}</div></td>
+                            <td className="p-3">{CarDetail.data.topSpeed} mph<br/><div className="text-sm text-zinc-500">Top Speed</div></td>
+                            <td className="p-3">{CarDetail.data.seats}<br/><div className="text-sm text-zinc-500">Seats</div></td>
                             </tr>
                             <tr>
-                                <td className="p-3">Color<br/><div className="text-base text-zinc-500">{CarDetail.data.color}</div></td>
-                                <td className="p-3">Fuel Type<br/><div className="text-base text-zinc-500">{CarDetail.data.fuelType}</div></td>
+                                <td className="p-3">{CarDetail.data.color}<br/><div className="text-sm text-zinc-500">Color</div></td>
+                                <td className="p-3">{CarDetail.data.fuelType}<br/><div className="text-sm text-zinc-500">Fuel Type</div></td>
                             </tr>
-                            <tr><td colSpan={2} className="p-3">Cargo Capacity<br/><div className="text-base text-zinc-500">{CarDetail.data.cargoCapacity} cubic ft.</div></td></tr>
+                            <tr><td colSpan={2} className="p-3">{CarDetail.data.cargoCapacity} cubic ft.<br/><div className="text-sm text-zinc-500">Cargo Capacity</div></td></tr>
                         </table>
                     </div>
                     <div className="text-xl py-3">{CarDetail.data.dayRate}$ per day</div>
