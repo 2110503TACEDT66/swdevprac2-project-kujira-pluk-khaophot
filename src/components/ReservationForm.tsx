@@ -69,7 +69,7 @@ export default function ReservationForm(){
     const selectedCarData = cars.find((car) => car.car === selectedCar);
 
     return (       
-        <main className="flex justify-between">
+        <main className="flex justify-between font-mono">
         {(
         <div className="flex w-2/3 h-screen relative justify-center items-center">
         {selectedCar ? (

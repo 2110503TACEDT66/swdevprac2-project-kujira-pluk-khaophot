@@ -3,7 +3,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 
 export default function CarSlideShow({ picArray }: { picArray: Array<string> }) {
-    const [index,setIndex] = useState(0)
+    const [index,setIndex] = useState(99)
     return (
         <div className='block w-full relative'>
             <Image src={picArray[index%3]}
