@@ -10,6 +10,13 @@ export default function EditMenu(){
                 Add Car
             </button>
         </a>
+        <a href="/admin/editCar" className="mt-4 text-center w-full">
+            <button className="bg-gray-700 hover:bg-gray-800 text-white 
+            font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 
+            ease-in-out transform hover:scale-105 focus:outline-none">
+                Edit Car
+            </button>
+        </a>
     </div>
         
     );

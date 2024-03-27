@@ -15,7 +15,6 @@ export default async function TopMenu(){
             <a href="/">
                 <Image src={'/img/logo.png'} className='h-[70%] w-auto absolute left-0 align-bottom top-[5px]'   width={0} height={0} sizes='100vh' alt='logo'/>
             </a>
-
             <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
                 <TopMenuItem title='Vehicles' pageRef='/car'/>
                 <TopMenuItem title='Reservation' pageRef='/reservations'/>

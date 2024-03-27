@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import getCars from '@/libs/getCars';
 import { Select, MenuItem } from '@mui/material';
 import Image from 'next/image';
-import { CarJson, ReservationItem } from '../../interfaces';
+import { CarItem, CarJson, ReservationItem } from '../../interfaces';
 // import Rent from '@/db/models/Rent';
 import { Dayjs } from 'dayjs';
 import dayjs from 'dayjs';
@@ -14,8 +14,8 @@ import addRent from '@/libs/addRent';
 import { useSession } from 'next-auth/react';
 export default function ReservationForm(){
 
-    const [cars, setCars] = useState([]);
-    const [selectedCar, setSelectedCar] = useState<CarJson|null>(null);    
+    const [cars, setCars] = useState<CarItem[]>([]);
+    const [selectedCar, setSelectedCar] = useState<string|null>(null);    
     const [reserveDate, setReserveDate] = useState<Dayjs|null>(null)
 
     const {data : session} = useSession()
@@ -23,21 +23,24 @@ export default function ReservationForm(){
     //for backend
     const addReserve = async () => {
         if (!session || !session.user.token) return null
-        const item:ReservationItem ={
-            car:selectedCar,
-            rentDate:dayjs(reserveDate).format("YYYY/MM/DD"),
-        }
-        const response = await addRent(session?.user?.token,item)
-        if(response){
-            console.log(response)
-            window.location.href = '/cart';
+        if(selectedCar&&reserveDate){
+            const item:ReservationItem ={
+                user: session.user._id,
+                car:selectedCar,
+                rentDate:dayjs(reserveDate).format("YYYY/MM/DD"),
+            }
+            const response = await addRent(session?.user?.token,item)
+            if(response){
+                console.log(response)
+                window.location.href = '/cart';
+            }
         }
     }
 
     useEffect(() => {
         const fetchCarsData = async () => {
             try {
-                const carJsonReady = await getCars();
+                const carJsonReady:CarJson = await getCars();
                 setCars(carJsonReady.data);
             } catch (error) {
                 console.error('Error fetching cars:', error);
@@ -52,9 +55,9 @@ export default function ReservationForm(){
         console.log(event.target.value)
     };
 
-    const CarMap=new Map()
-    const CarPicMap = new Map()
-    cars.forEach(tmpCar => {
+    const CarMap=new Map<string,string>()
+    const CarPicMap = new Map<string,string>()
+    cars.map((tmpCar:CarItem) => {
         CarMap.set(tmpCar.id,tmpCar.car)
         CarPicMap.set(tmpCar.id,tmpCar.picArray[0])
     })
@@ -66,7 +69,7 @@ export default function ReservationForm(){
         {selectedCar ? (
             <div className="flex justify-center items-center">
                 <Image 
-                    src={CarPicMap.get(selectedCar)} 
+                    src={CarPicMap.get(selectedCar)||''} 
                     alt='car' 
                     width={800} 
                     height={800} 

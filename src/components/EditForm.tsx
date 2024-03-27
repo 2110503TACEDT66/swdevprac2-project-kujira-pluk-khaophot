@@ -5,6 +5,7 @@ import { Select, MenuItem } from '@mui/material';
 import Image from 'next/image';
 import { CarJson, ReservationItem } from '../../interfaces';
 // import Rent from '@/db/models/Rent';
+import { CarItem } from '../../interfaces';
 import { Dayjs } from 'dayjs';
 import dayjs from 'dayjs';
 import { DatePicker } from "@mui/x-date-pickers"
@@ -18,31 +19,35 @@ export default function EditForm(){
 
     const urlParams = useSearchParams()
     const rid = urlParams.get('id')
+    if(!rid){ return null }
 
-    const [cars, setCars] = useState([]);
+    const [cars, setCars] = useState<CarItem[]>([]);
     const [selectedCar, setSelectedCar] = useState<string|null>(null);    
     const [reserveDate, setReserveDate] = useState<Dayjs|null>(null)
 
     const {data : session} = useSession()
-
     //for backend
     const updateReserve = async () => {
         if (!session || !session.user.token) return null
-        const item:ReservationItem ={
-            car:selectedCar,
-            returnDate:dayjs(reserveDate).format("YYYY/MM/DD"),
+        if(selectedCar && reserveDate){
+            const item:ReservationItem ={
+                user: session.user._id,
+                car:selectedCar,
+                rentDate:dayjs(reserveDate).format("YYYY/MM/DD"),
+            }
+            const response = await updateRent(session?.user?.token,item,rid)
+            if(response){
+                console.log(response)
+                window.location.href = '/cart'
+            }
         }
-        const response = await updateRent(session?.user?.token,item,rid)
-        if(response){
-            console.log(response)
-            window.location.href = '/cart'
-        }
+       
     }
 
     useEffect(() => {
         const fetchCarsData = async () => {
             try {
-                const carJsonReady = await getCars();
+                const carJsonReady:CarJson = await getCars();
                 setCars(carJsonReady.data);
             } catch (error) {
                 console.error('Error fetching cars:', error);
@@ -57,14 +62,12 @@ export default function EditForm(){
         console.log(event.target.value)
     };
 
-    const CarMap=new Map()
-    const CarPicMap = new Map()
-    cars.forEach(tmpCar => {
+    const CarMap=new Map<string,string>()
+    const CarPicMap = new Map<string,string>()
+    cars.map((tmpCar:CarItem) => {
         CarMap.set(tmpCar.id,tmpCar.car)
         CarPicMap.set(tmpCar.id,tmpCar.picArray[0])
     })
-    const selectedCarData = cars.find((car) => car.car === selectedCar);
-
     return (       
         <main className="flex justify-between">
         {(
@@ -72,7 +75,7 @@ export default function EditForm(){
         {selectedCar ? (
             <div className="flex justify-center items-center">
                 <Image 
-                    src={CarPicMap.get(selectedCar)} 
+                    src={CarPicMap.get(selectedCar)||''}                     
                     alt='car' 
                     width={800} 
                     height={800} 

@@ -3,17 +3,18 @@ import Image from 'next/image'
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/libs/auth";
 import CancelButton from './CancelButton'
-import { ReservationItem } from '../../interfaces'
+import { RentItem, RentJson, ReservationItem } from '../../interfaces'
 
-export default async function cart({rentJson}: {rentJson:ReservationItem}){
-    const rentReady = await rentJson
+export default async function cart({rentJson}: {rentJson:Promise<RentJson>}){
+    const rentReady:RentJson = await rentJson
     const session = await getServerSession(authOptions)
+    if (!session || !session.user.token) return null
     return(
         <>
         <div className='mt-[100px]'></div>
         <div className="flex flex-col justify-center items-center">
             {
-                rentReady.data.map((rentItem:ReservationItem)=>(
+                rentReady.data.map((rentItem:RentItem)=>(
                     <div className="bg-white rounded px-5 mx-5 py-2 px-2 my-2 w-[60%] flex relative h-[170px] hover:bg-slate-100" key={rentItem._id}>
                         <div className='h-[150px] w-[250px] relative'>
                             <Image src={rentItem.car.picArray[0]} width={0} height={0} sizes='100vm' alt='car picture' priority className='rounded w-full h-full' style={{objectFit:"cover"}}/>
