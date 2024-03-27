@@ -1,5 +1,5 @@
 export default async function deleteRent(token: string , rentID: string) {
-    const response = await fetch (`http://localhost:5000/api/v1/rents/${rentID}`,{
+    const response = await fetch (`${process.env.BACKEND_URL}/api/v1/rents/${rentID}`,{
         method: "DELETE",
         headers: {
             authorization : `Bearer ${token}`
